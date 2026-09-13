@@ -88,20 +88,21 @@ Build an AI-powered financial decision agent that evaluates 250 user purchase/pa
 
 ### Tasks
 
-- [ ] Create `code/cashflow_simulator.py`
-- [ ] Build daily balance array from `request_date` to `request_date + 90 days`
-- [ ] Core functions:
+- [x] Create `code/cashflow_simulator.py`
+- [x] Build daily balance array from `request_date` to `request_date + 90 days`
+- [x] Core functions:
   - `compute_amount_safe_to_pay()` → max payable today while keeping balance ≥ min_balance for all 90 days
-  - `find_earliest_full_payment_date()` → first date where full amount is safe
-  - `simulate_with_plan()` → test if a specific payment schedule is safe
-  - `simulate_with_spending_changes()` → test with stopped/reduced events
-- [ ] Key constraint: balance must NEVER drop below `minimum_balance_to_keep` on any day
+  - `find_earliest_date_for_full_payment()` → first date where full amount is safe
+  - `simulate_plan()` → test if a specific payment schedule is safe
+  - `simulate(spending_changes=...)` → test with stopped/reduced events
+- [x] Key constraint: balance must NEVER drop below `minimum_balance_to_keep` on any day
 
 ### Files
 
-| File                         | Action |
-| ---------------------------- | ------ |
-| `code/cashflow_simulator.py` | NEW    |
+| File                         | Action                     |
+| ---------------------------- | -------------------------- |
+| `code/cashflow_simulator.py` | NEW (Complete)             |
+| `code/test_phase4.py`        | NEW (Complete, 6/6 passed) |
 
 ---
 
