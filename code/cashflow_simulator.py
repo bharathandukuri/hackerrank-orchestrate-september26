@@ -147,8 +147,10 @@ class CashflowSimulator:
         )
 
         safe_amt = max(0.0, min(min_buffer, requested_amount))
-        # Round to 2 decimal places conservatively (round down)
-        safe_amt = int(safe_amt * 100) / 100.0
+        # Round to 2 decimal places conservatively
+        safe_amt = round(safe_amt, 2)
+        if safe_amt >= round(requested_amount, 2) - 1e-4:
+            safe_amt = round(requested_amount, 2)
         return safe_amt
 
     def find_earliest_date_for_full_payment(

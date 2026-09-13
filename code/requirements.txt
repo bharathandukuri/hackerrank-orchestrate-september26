@@ -1,0 +1,9 @@
+# Buy or Wait? — AI Financial Decision Agent
+# Python 3.10+ compatible
+
+# Core execution uses Python standard library.
+# Optional multimodal and API dependencies:
+google-genai>=0.1.1
+python-dotenv>=1.0.0
+pillow>=10.0.0
+

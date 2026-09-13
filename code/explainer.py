@@ -90,9 +90,23 @@ class Explainer:
             and plan.method == "partial_payment"
         ):
             sorted_sched = sorted(plan.schedule.items(), key=lambda x: x[0])
-            first_amt_str = format_amount_str(sorted_sched[0][1])
-            second_amt_str = format_amount_str(sorted_sched[1][1])
-            second_date_str = format_date_str(sorted_sched[1][0])
+            first_amt = (
+                sorted_sched[0][1] if len(sorted_sched) > 0 else plan.amount_safe_to_pay
+            )
+            second_amt = (
+                sorted_sched[1][1]
+                if len(sorted_sched) > 1
+                else (request.requested_amount - first_amt)
+            )
+            second_date = (
+                sorted_sched[1][0]
+                if len(sorted_sched) > 1
+                else (plan.earliest_date_for_full_payment or request.request_date)
+            )
+
+            first_amt_str = format_amount_str(first_amt)
+            second_amt_str = format_amount_str(second_amt)
+            second_date_str = format_date_str(second_date)
 
             return (
                 f"Pay {ccy} {first_amt_str} today and the remaining {ccy} {second_amt_str} "

@@ -148,7 +148,7 @@ class PlanEvaluator:
 
             for changes in change_subsets:
                 # If no changes and safe_today < requested_amount, full payment today without changes is NOT safe
-                if not changes and safe_today < request.requested_amount:
+                if not changes and safe_today < request.requested_amount - 1e-4:
                     continue
 
                 if self.sim.simulate_plan(state, sched, spending_changes=changes):
@@ -232,8 +232,9 @@ class PlanEvaluator:
         # -------------------------------------------------------------
         if "partial_payment" in user_methods and request.allows_partial_payment:
             if (
-                0 < safe_today < request.requested_amount
+                1e-4 < safe_today < (request.requested_amount - 1e-4)
                 and earliest_full_date is not None
+                and earliest_full_date > request.request_date
             ):
                 remainder = request.requested_amount - safe_today
                 sched = {
