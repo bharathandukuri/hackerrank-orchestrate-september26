@@ -12,19 +12,20 @@ Build an AI-powered financial decision agent that evaluates 250 user purchase/pa
 
 ### Tasks
 
-- [ ] Create `code/data_loader.py`
-- [ ] Load all 9 CSVs into indexed dictionaries
-- [ ] Parse amounts as float, dates as `datetime.date`, pipe-delimited fields as lists
-- [ ] Build lookup indexes:
+- [x] Create `code/data_loader.py`
+- [x] Load all 9 CSVs into indexed dictionaries
+- [x] Parse amounts as float, dates as `datetime.date`, pipe-delimited fields as lists
+- [x] Build lookup indexes:
   - `{user_id: profile}`, `{user_id: [events]}`, `{request_id: [payment_options]}`
   - `{(date, from_ccy, to_ccy): rate}`, `{user_id: [messages]}`, `{event_id: image_id}`
-- [ ] Unit test: verify counts match (250 requests, 275 profiles, 25342 events, etc.)
+- [x] Unit test: verify counts match (250 requests, 275 profiles, 25342 events, etc.)
 
 ### Files
 
-| File                  | Action |
-| --------------------- | ------ |
-| `code/data_loader.py` | NEW    |
+| File                  | Action                     |
+| --------------------- | -------------------------- |
+| `code/data_loader.py` | NEW (Complete)             |
+| `code/test_phase1.py` | NEW (Complete, 9/9 passed) |
 
 ---
 
