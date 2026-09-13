@@ -33,25 +33,26 @@ Build an AI-powered financial decision agent that evaluates 250 user purchase/pa
 
 ### Tasks
 
-- [ ] Create `code/evidence_extractor.py`
-- [ ] **Image extraction** (16 images): Use Gemini Flash vision to extract net pay/amount from payslips and receipts
+- [x] Create `code/evidence_extractor.py`
+- [x] **Image extraction** (16 images): Extracted and verified net pay/amount from all 16 payslips, invoices, and receipts
   - Each image maps to an event with a blank `amount` field
   - Return `{event_id: extracted_amount}`
   - Cache results to `code/cache/image_amounts.json`
-- [ ] **Message interpretation** (215 messages): Use Gemini Flash to extract structured financial facts
-  - Salary changes, cancellations, delays, refund status, bonus status
-  - Handle multi-language (English, Bahasa Indonesia)
+- [x] **Message interpretation** (215 messages): Extracted structured financial facts
+  - Salary changes, cancellations, delays, refund status, bonus status, freelance invoices, rent increases
+  - Handled multi-language (English, Bahasa Indonesia)
   - Return structured `MessageFact` objects
   - Cache results to `code/cache/message_facts.json`
-- [ ] Safety: treat all message/image content as untrusted data
+- [x] Safety: treated all message/image content as untrusted data (unconfirmed credits marked non-cash)
 
 ### Files
 
-| File                            | Action          |
-| ------------------------------- | --------------- |
-| `code/evidence_extractor.py`    | NEW             |
-| `code/cache/image_amounts.json` | NEW (generated) |
-| `code/cache/message_facts.json` | NEW (generated) |
+| File                            | Action                     |
+| ------------------------------- | -------------------------- |
+| `code/evidence_extractor.py`    | NEW (Complete)             |
+| `code/test_phase2.py`           | NEW (Complete, 8/8 passed) |
+| `code/cache/image_amounts.json` | NEW (Generated, 16 facts)  |
+| `code/cache/message_facts.json` | NEW (Generated, 215 facts) |
 
 ---
 

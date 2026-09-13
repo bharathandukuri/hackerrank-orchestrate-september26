@@ -1,0 +1,130 @@
+{
+  "event_253": {
+    "image_id": "image_01",
+    "amount": 4365000.0,
+    "currency": "IDR",
+    "description": "August 2019 net salary",
+    "document_type": "payslip",
+    "extracted_from": "Net Pay: IDR 4,365,000"
+  },
+  "event_1442": {
+    "image_id": "image_02",
+    "amount": 100000.0,
+    "currency": "INR",
+    "description": "Outstanding rent balance",
+    "document_type": "rent_receipt",
+    "extracted_from": "Balance Due: 1,00,000.00"
+  },
+  "event_1545": {
+    "image_id": "image_03",
+    "amount": 41272.0,
+    "currency": "INR",
+    "description": "Bulk groceries and pantry purchase",
+    "document_type": "bill_of_supply",
+    "extracted_from": "Net Amount: 41272.0"
+  },
+  "event_1700": {
+    "image_id": "image_04",
+    "amount": 2854.0,
+    "currency": "INR",
+    "description": "Delivered grocery order",
+    "document_type": "delivery_order",
+    "extracted_from": "Item Bill: ₹2854.00"
+  },
+  "event_1786": {
+    "image_id": "image_05",
+    "amount": 704.05,
+    "currency": "INR",
+    "description": "Outstanding telecom bill",
+    "document_type": "utility_bill",
+    "extracted_from": "Amount due till 06-Feb-2026: 704.05"
+  },
+  "event_3051": {
+    "image_id": "image_06",
+    "amount": 1995.0,
+    "currency": "INR",
+    "description": "Grocery tax invoice",
+    "document_type": "tax_invoice",
+    "extracted_from": "Total: 1995.00 (One Thousand And Nine Hundred And Ninety-Five Rupees)"
+  },
+  "event_3231": {
+    "image_id": "image_07",
+    "amount": 8528.0,
+    "currency": "INR",
+    "description": "Restaurant tax invoice",
+    "document_type": "restaurant_bill",
+    "extracted_from": "Grand Total (RS): 8528"
+  },
+  "event_4535": {
+    "image_id": "image_08",
+    "amount": 15339.0,
+    "currency": "INR",
+    "description": "Property maintenance invoice",
+    "document_type": "maintenance_receipt",
+    "extracted_from": "Total Amount Received: ₹ 15,339.00"
+  },
+  "event_5170": {
+    "image_id": "image_09",
+    "amount": 723.0,
+    "currency": "INR",
+    "description": "Water bill due",
+    "document_type": "utility_receipt",
+    "extracted_from": "Total Amount Received: ₹ 723.00"
+  },
+  "event_6033": {
+    "image_id": "image_10",
+    "amount": 79679.26,
+    "currency": "INR",
+    "description": "Large grocery tax invoice",
+    "document_type": "tax_invoice",
+    "extracted_from": "Total / Balance Due: ₹79,679.26"
+  },
+  "event_6859": {
+    "image_id": "image_11",
+    "amount": 3650.0,
+    "currency": "INR",
+    "description": "Hospital bill payable",
+    "document_type": "hospital_bill",
+    "extracted_from": "Total Bill Amount / Balance: 3650.00"
+  },
+  "event_7307": {
+    "image_id": "image_12",
+    "amount": 33.5,
+    "currency": "USD",
+    "description": "Taxi fare",
+    "document_type": "taxi_receipt",
+    "extracted_from": "Total: $33.50"
+  },
+  "event_7941": {
+    "image_id": "image_13",
+    "amount": 2298.0,
+    "currency": "INR",
+    "description": "Tote bag order",
+    "document_type": "ecommerce_order",
+    "extracted_from": "Total paid: ₹2,298"
+  },
+  "event_9421": {
+    "image_id": "image_14",
+    "amount": 4543.0,
+    "currency": "INR",
+    "description": "Pharmacy purchase",
+    "document_type": "pharmacy_receipt",
+    "extracted_from": "TOTAL: 4543.00"
+  },
+  "event_9806": {
+    "image_id": "image_15",
+    "amount": 9968.0,
+    "currency": "INR",
+    "description": "Airline ticket purchase",
+    "document_type": "airline_invoice",
+    "extracted_from": "Grand Total(Incl Taxes): 9,968.00"
+  },
+  "event_10521": {
+    "image_id": "image_16",
+    "amount": 393.22,
+    "currency": "INR",
+    "description": "EV charging wallet payment",
+    "document_type": "ev_charging_invoice",
+    "extracted_from": "Total: 393.22"
+  }
+}
