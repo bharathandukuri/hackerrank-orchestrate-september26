@@ -42,7 +42,7 @@ def run_pipeline(
     # 1. Ingest Data
     print("\n[1/5] Ingesting and indexing datasets...")
     loader = DataLoader(dataset_dir).load_all()
-    extractor = EvidenceExtractor()
+    extractor = EvidenceExtractor(loader=loader)
     tracker = UsageTracker()
 
     # Record multimodal extraction token usage
