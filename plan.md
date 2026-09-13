@@ -60,26 +60,27 @@ Build an AI-powered financial decision agent that evaluates 250 user purchase/pa
 
 ### Tasks
 
-- [ ] Create `code/financial_state.py`
-- [ ] For each user+request, reconstruct financial position as of `request_date`:
+- [x] Create `code/financial_state.py`
+- [x] For each user+request, reconstruct financial position as of `request_date`:
   - Start from `current_available_balance`
   - Reserve `pending` debits, ignore `pending` credits
   - Ignore `cancelled`, `failed`, `unrealized` events
   - Apply message-based salary adjustments and event amendments
   - Fill blank amounts from image extraction
   - Convert foreign currency amounts using `exchange_rates.csv`
-- [ ] **Recurrence detection:**
+- [x] **Recurrence detection:**
   - Group events by (user_id, category, description similarity)
-  - Require ≥2 consistent monthly occurrences (28-31 day spacing)
+  - Require ≥2 consistent monthly occurrences (28-31 day spacing), weekly, or biweekly
   - Project forward for 90 days from `request_date`
   - Essential categories: project conservatively
-- [ ] Handle `linked_event_id` chains (investment lifecycle, refund chains)
+- [x] Handle `linked_event_id` chains and identify flexible candidate expenses for spending changes
 
 ### Files
 
-| File                      | Action |
-| ------------------------- | ------ |
-| `code/financial_state.py` | NEW    |
+| File                      | Action                     |
+| ------------------------- | -------------------------- |
+| `code/financial_state.py` | NEW (Complete)             |
+| `code/test_phase3.py`     | NEW (Complete, 6/6 passed) |
 
 ---
 
