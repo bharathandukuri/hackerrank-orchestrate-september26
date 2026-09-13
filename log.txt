@@ -321,3 +321,75 @@ branch=main
 repo_root=c:\Users\Bharath Andukuri\Desktop\hackerrank-orchestrate-september26
 worktree=main
 parent_agent=none
+
+## 2026-09-13T12:51:50+05:30 Testing With and Without .env
+
+User Prompt (verbatim, secrets redacted):
+I would like to test this app with .env and without .env explicity. how could I tesst itt.
+
+Agent Response Summary:
+Created code/test_env_modes.py enabling explicit verification of both offline mode (without .env, zero API keys, 100% deterministic simulation) and online mode (with .env, dynamic Gemini VLM extraction on document images). Enhanced load_env_file() in code/evidence_extractor.py to search current working directory, code/, and parent directories. Verified offline mode achieves 25/25 match on sample requests, and repackaged code.zip.
+
+Actions:
+* Enhanced load_env_file() in code/evidence_extractor.py
+* Created code/test_env_modes.py CLI test utility
+* Executed test_env_modes.py verifying offline mode and graceful fallback
+* Repackaged code.zip with 24 files
+* Appended turn entry to log.txt
+
+Context:
+tool=Antigravity
+branch=main
+repo_root=c:\Users\Bharath Andukuri\Desktop\hackerrank-orchestrate-september26
+worktree=main
+parent_agent=none
+
+## 2026-09-13T12:57:15+05:30 Multi-Model Endpoint Fix and Live VLM Extraction Verification
+
+User Prompt (verbatim, secrets redacted):
+C:\Users\Bharath Andukuri\Desktop\hackerrank-orchestrate-september26>python code/test_env_modes.py
+
+======================================================================
+  [TEST 1] Testing Agent WITHOUT .env (Offline / Pure Deterministic Mode)
+======================================================================
+  1. Checking environment keys:
+     GEMINI_API_KEY set? False
+     GOOGLE_API_KEY set? False
+  2. Ingesting dataset and initializing EvidenceExtractor:
+     - Cached Image Facts: 16 / 16
+     - Total Message Facts: 215 / 215
+  3. Simulating 25 sample requests offline:
+     - Recommended method match: 25 / 25 (100%)
+
+  >>> RESULT: OFFLINE MODE PASSED PERFECTLY! <<<
+      The agent operates with 100% accuracy with ZERO API keys and ZERO .env.
+
+======================================================================
+  [TEST 2] Testing Agent WITH .env (Dynamic VLM Extraction Mode)
+======================================================================
+  1. Found .env file at: C:\Users\Bharath Andukuri\Desktop\hackerrank-orchestrate-september26\code\.env
+  2. GEMINI_API_KEY detected: [REDACTED]
+  3. Attempting dynamic VLM extraction on media/images/image_01.png:
+     VLM call failed (e.g. invalid key, rate limit, or no internet).
+     Agent automatically falls back to verified cache.
+
+C:\Users\Bharath Andukuri\Desktop\hackerrank-orchestrate-september26>
+
+Agent Response Summary:
+Diagnosed the VLM call failure: the Google Generative Language API deprecated models/gemini-2.5-flash for new users in favor of gemini-3.6-flash and gemini-flash-latest. Updated code/evidence_extractor.py to try a priority list of active model endpoints (gemini-3.6-flash, gemini-3.7-flash, gemini-flash-latest) with fallback. Re-tested live extraction on image_01.png, successfully extracting 4,365,000 IDR net pay. Repackaged clean code.zip ensuring .env is strictly excluded and added root .gitignore.
+
+Actions:
+* Diagnosed 404 model deprecation error from Google API
+* Updated code/evidence_extractor.py with multi-model fallback (gemini-3.6-flash, gemini-3.7-flash, gemini-flash-latest)
+* Verified dynamic VLM extraction succeeds live on image_01.png
+* Added root .gitignore to prevent committing .env
+* Repackaged code.zip (25 files, real .env excluded)
+* Appended turn entry to log.txt
+
+Context:
+tool=Antigravity
+branch=main
+repo_root=c:\Users\Bharath Andukuri\Desktop\hackerrank-orchestrate-september26
+worktree=main
+parent_agent=none
+

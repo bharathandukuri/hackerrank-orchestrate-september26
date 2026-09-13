@@ -23,21 +23,32 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 
-def load_env_file(env_path: str | Path = ".env") -> None:
-    """Load key-value pairs from .env file into os.environ if not already set."""
-    p = Path(env_path)
-    if not p.exists():
-        p = Path(__file__).resolve().parent.parent / ".env"
-    if p.exists():
-        try:
-            with open(p, "r", encoding="utf-8") as f:
-                for line in f:
-                    line = line.strip()
-                    if line and not line.startswith("#") and "=" in line:
-                        k, v = line.split("=", 1)
-                        os.environ.setdefault(k.strip(), v.strip().strip("'\""))
-        except Exception:
-            pass
+def load_env_file(
+    env_path: str | Path = ".env", override: bool = False
+) -> Optional[Path]:
+    """Load key-value pairs from .env file into os.environ."""
+    candidates = [
+        Path(env_path),
+        Path(".env"),
+        Path(__file__).resolve().parent / ".env",
+        Path(__file__).resolve().parent.parent / ".env",
+    ]
+    for p in candidates:
+        if p.exists() and p.is_file():
+            try:
+                with open(p, "r", encoding="utf-8") as f:
+                    for line in f:
+                        line = line.strip()
+                        if line and not line.startswith("#") and "=" in line:
+                            k, v = line.split("=", 1)
+                            key = k.strip()
+                            val = v.strip().strip("'\"")
+                            if override or key not in os.environ:
+                                os.environ[key] = val
+                return p
+            except Exception:
+                pass
+    return None
 
 
 load_env_file()
@@ -135,7 +146,6 @@ class ImageExtractor:
             with open(image_path, "rb") as f:
                 img_b64 = base64.b64encode(f.read()).decode("utf-8")
 
-            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
             prompt = (
                 "You are an expert financial document parser. "
                 "Look at this document image (payslip, receipt, or invoice). "
@@ -159,30 +169,50 @@ class ImageExtractor:
                 "generationConfig": {"response_mime_type": "application/json"},
             }
 
-            req = urllib.request.Request(
-                url,
-                data=json.dumps(payload).encode("utf-8"),
-                headers={"Content-Type": "application/json"},
-            )
-            with urllib.request.urlopen(req, timeout=15) as resp:
-                res_data = json.loads(resp.read().decode("utf-8"))
-                text = res_data["candidates"][0]["content"]["parts"][0]["text"]
-                parsed = json.loads(text)
-                amt = float(parsed["amount"])
-                ccy = parsed.get("currency", currency)
+            candidate_models = [
+                "gemini-3.6-flash",
+                "gemini-3.7-flash",
+                "gemini-flash-latest",
+                "gemini-2.5-flash",
+            ]
 
-                fact = ImageFact(
-                    event_id=event_id,
-                    image_id=image_id,
-                    amount=amt,
-                    currency=ccy,
-                    description=f"Dynamic extraction from {image_id}",
-                    document_type="receipt_or_invoice",
-                    extracted_from="gemini-2.5-flash",
+            res_data = None
+            for model_name in candidate_models:
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
+                req = urllib.request.Request(
+                    url,
+                    data=json.dumps(payload).encode("utf-8"),
+                    headers={"Content-Type": "application/json"},
                 )
-                self.facts_by_event_id[event_id] = fact
-                self.facts_by_image_id[image_id] = fact
-                return fact
+                try:
+                    with urllib.request.urlopen(req, timeout=20) as resp:
+                        res_data = json.loads(resp.read().decode("utf-8"))
+                        break
+                except urllib.error.HTTPError as e:
+                    if e.code == 404:
+                        continue  # Try next model candidate
+                    raise
+
+            if not res_data:
+                return None
+
+            text = res_data["candidates"][0]["content"]["parts"][0]["text"]
+            parsed = json.loads(text)
+            amt = float(parsed["amount"])
+            ccy = parsed.get("currency", currency)
+
+            fact = ImageFact(
+                event_id=event_id,
+                image_id=image_id,
+                amount=amt,
+                currency=ccy,
+                description=f"Dynamic extraction from {image_id}",
+                document_type="receipt_or_invoice",
+                extracted_from="gemini-vlm",
+            )
+            self.facts_by_event_id[event_id] = fact
+            self.facts_by_image_id[image_id] = fact
+            return fact
         except Exception:
             return None
 
