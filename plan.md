@@ -144,11 +144,11 @@ Build an AI-powered financial decision agent that evaluates 250 user purchase/pa
 
 ### Tasks
 
-- [ ] Create `code/explainer.py` — template-based explanation generator
+- [x] Create `code/explainer.py` — template-based explanation generator
   - Match the style from `sample_requests.csv` exactly
   - Templates for each status: affordable_now, affordable_with_plan, affordable_later, not_affordable
-- [ ] Create output writer — format all 250 rows into `dataset/output.csv`
-- [ ] Validate output:
+- [x] Create output writer — format all 250 rows into `dataset/output.csv`
+- [x] Validate output:
   - All 250 request_ids present
   - Valid enum values for status and method
   - `0 <= amount_safe_to_pay <= requested_amount`
@@ -158,9 +158,12 @@ Build an AI-powered financial decision agent that evaluates 250 user purchase/pa
 
 ### Files
 
-| File                | Action |
-| ------------------- | ------ |
-| `code/explainer.py` | NEW    |
+| File                      | Action                     |
+| ------------------------- | -------------------------- |
+| `code/explainer.py`       | NEW (Complete)             |
+| `code/output_writer.py`   | NEW (Complete)             |
+| `code/validate_output.py` | NEW (Complete)             |
+| `code/test_phase6.py`     | NEW (Complete, 4/4 passed) |
 
 ---
 
