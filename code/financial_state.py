@@ -186,28 +186,51 @@ class FinancialStateBuilder:
         # Determine regular salary amount and pay day
         recurring_salary_amt = 0.0
         salary_day = 15
+
+        # 1. Base regular salary from settled events
+        if salary_settled:
+            # Filter regular payroll events
+            regular_sal = [
+                e
+                for e in salary_settled
+                if any(
+                    w in e.description.lower()
+                    for w in ("payroll", "base salary", "primary household", "salary")
+                )
+                and "arrears" not in e.description.lower()
+                and "bonus" not in e.description.lower()
+            ] or salary_settled
+
+            last_s = regular_sal[-1]
+            s_amt = last_s.amount or 0.0
+            if last_s.currency != home_ccy:
+                rate = self.loader.get_exchange_rate(
+                    last_s.settlement_date, last_s.currency, home_ccy
+                )
+                s_amt *= rate
+            recurring_salary_amt = s_amt
+
+            # Mode of salary days
+            day_counts = defaultdict(int)
+            for s in regular_sal:
+                day_counts[s.settlement_date.day] += 1
+            salary_day = max(day_counts.items(), key=lambda x: x[1])[0]
+
+        # 2. Scheduled salary overrides if available
+        if has_scheduled_salary:
+            recurring_salary_amt = scheduled_salary_amt
+            if scheduled_salary_date:
+                salary_day = scheduled_salary_date.day
+
+        # 3. Message adjustments override or refine amount and date
         if not is_job_ended:
             sal_adjs = self.extractor.messages.get_salary_adjustments(user_id)
             if sal_adjs:
                 last_adj = sal_adjs[-1]
-                if last_adj.amount:
+                if last_adj.amount is not None:
                     recurring_salary_amt = last_adj.amount
-                if last_adj.date:
+                if last_adj.date is not None:
                     salary_day = last_adj.date.day
-            elif has_scheduled_salary:
-                recurring_salary_amt = scheduled_salary_amt
-                if scheduled_salary_date:
-                    salary_day = scheduled_salary_date.day
-            elif salary_settled:
-                last_s = salary_settled[-1]
-                s_amt = last_s.amount or 0.0
-                if last_s.currency != home_ccy:
-                    rate = self.loader.get_exchange_rate(
-                        last_s.settlement_date, last_s.currency, home_ccy
-                    )
-                    s_amt *= rate
-                recurring_salary_amt = s_amt
-                salary_day = last_s.settlement_date.day
 
         # Project recurring salary forward
         if recurring_salary_amt > 0 and not is_job_ended:

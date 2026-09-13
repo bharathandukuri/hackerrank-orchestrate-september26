@@ -96,12 +96,12 @@
     "request_id": "request_11",
     "related_event_id": null,
     "source_type": "employer",
-    "fact_type": "unconfirmed_bonus_commission",
+    "fact_type": "salary_confirmed",
     "amount": 38760000.0,
     "date": null,
     "percentage": null,
-    "affects_cashflow": false,
-    "description": "Bonus or commission is pending/unconfirmed; must not count as cash"
+    "affects_cashflow": true,
+    "description": "Confirmed base salary; pending commission excluded"
   },
   {
     "message_id": "message_09",
@@ -746,12 +746,12 @@
     "request_id": "request_76",
     "related_event_id": null,
     "source_type": "employer",
-    "fact_type": "unconfirmed_bonus_commission",
+    "fact_type": "salary_confirmed",
     "amount": 3072.0,
     "date": null,
     "percentage": null,
-    "affects_cashflow": false,
-    "description": "Bonus or commission is pending/unconfirmed; must not count as cash"
+    "affects_cashflow": true,
+    "description": "Confirmed base salary; pending commission excluded"
   },
   {
     "message_id": "message_59",
@@ -772,12 +772,12 @@
     "request_id": "request_80",
     "related_event_id": null,
     "source_type": "employer",
-    "fact_type": "unconfirmed_bonus_commission",
+    "fact_type": "salary_confirmed",
     "amount": 158000.0,
     "date": null,
     "percentage": null,
-    "affects_cashflow": false,
-    "description": "Bonus or commission is pending/unconfirmed; must not count as cash"
+    "affects_cashflow": true,
+    "description": "Confirmed base salary; pending commission excluded"
   },
   {
     "message_id": "message_61",
@@ -902,12 +902,12 @@
     "request_id": null,
     "related_event_id": null,
     "source_type": "employer",
-    "fact_type": "unconfirmed_bonus_commission",
+    "fact_type": "salary_confirmed",
     "amount": 49280.0,
     "date": null,
     "percentage": null,
-    "affects_cashflow": false,
-    "description": "Bonus or commission is pending/unconfirmed; must not count as cash"
+    "affects_cashflow": true,
+    "description": "Confirmed base salary; pending commission excluded"
   },
   {
     "message_id": "message_71",
@@ -1006,12 +1006,12 @@
     "request_id": null,
     "related_event_id": null,
     "source_type": "employer",
-    "fact_type": "unconfirmed_bonus_commission",
+    "fact_type": "salary_confirmed",
     "amount": 35860.0,
     "date": null,
     "percentage": null,
-    "affects_cashflow": false,
-    "description": "Bonus or commission is pending/unconfirmed; must not count as cash"
+    "affects_cashflow": true,
+    "description": "Confirmed base salary; pending commission excluded"
   },
   {
     "message_id": "message_79",
@@ -1058,12 +1058,12 @@
     "request_id": null,
     "related_event_id": null,
     "source_type": "employer",
-    "fact_type": "unconfirmed_bonus_commission",
+    "fact_type": "salary_confirmed",
     "amount": 33440.0,
     "date": null,
     "percentage": null,
-    "affects_cashflow": false,
-    "description": "Bonus or commission is pending/unconfirmed; must not count as cash"
+    "affects_cashflow": true,
+    "description": "Confirmed base salary; pending commission excluded"
   },
   {
     "message_id": "message_83",
@@ -1656,12 +1656,12 @@
     "request_id": "request_164",
     "related_event_id": null,
     "source_type": "employer",
-    "fact_type": "unconfirmed_bonus_commission",
+    "fact_type": "salary_confirmed",
     "amount": 44270000.0,
     "date": null,
     "percentage": null,
-    "affects_cashflow": false,
-    "description": "Bonus or commission is pending/unconfirmed; must not count as cash"
+    "affects_cashflow": true,
+    "description": "Confirmed base salary; pending commission excluded"
   },
   {
     "message_id": "message_129",
@@ -1799,12 +1799,12 @@
     "request_id": "request_176",
     "related_event_id": null,
     "source_type": "employer",
-    "fact_type": "unconfirmed_bonus_commission",
+    "fact_type": "salary_confirmed",
     "amount": 847.0,
     "date": null,
     "percentage": null,
-    "affects_cashflow": false,
-    "description": "Bonus or commission is pending/unconfirmed; must not count as cash"
+    "affects_cashflow": true,
+    "description": "Confirmed base salary; pending commission excluded"
   },
   {
     "message_id": "message_140",
@@ -2514,12 +2514,12 @@
     "request_id": null,
     "related_event_id": null,
     "source_type": "employer",
-    "fact_type": "unconfirmed_bonus_commission",
+    "fact_type": "salary_confirmed",
     "amount": 1548.0,
     "date": null,
     "percentage": null,
-    "affects_cashflow": false,
-    "description": "Bonus or commission is pending/unconfirmed; must not count as cash"
+    "affects_cashflow": true,
+    "description": "Confirmed base salary; pending commission excluded"
   },
   {
     "message_id": "message_195",

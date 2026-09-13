@@ -110,19 +110,19 @@ Build an AI-powered financial decision agent that evaluates 250 user purchase/pa
 
 ### Tasks
 
-- [ ] Create `code/plan_evaluator.py`
-- [ ] Create `code/plan_ranker.py`
-- [ ] Enumerate all candidate plans per request:
+- [x] Create `code/plan_evaluator.py`
+- [x] Create `code/plan_ranker.py`
+- [x] Enumerate all candidate plans per request:
   1. **Full payment** — pay full amount on request_date (if user considers `full_payment`)
   2. **Installments** — for each option in `request_payment_options.csv` (if user considers `installments` and months fit `max_installment_months`)
   3. **Partial payment** — pay safe amount now + remainder later (if `allows_partial_payment` and user considers `partial_payment`)
   4. **Wait** — pay full amount on earliest safe date (if user considers `full_payment`)
   5. **Not recommended** — fallback
-- [ ] For failing plans, try spending changes (up to 3):
+- [x] For failing plans, try spending changes (up to 3):
   - `stop:<event_id>` — stoppable events in user's willing-to-stop categories
   - `reduce_to:<event_id>:<min_amount>` — reducible events in user's willing-to-reduce categories
   - Only non-protected, flexible, recurring events
-- [ ] Rank safe plans by priority:
+- [x] Rank safe plans by priority:
   1. Completes by `desired_completion_date`
   2. No spending changes needed
   3. Minimize total amount paid
@@ -132,10 +132,11 @@ Build an AI-powered financial decision agent that evaluates 250 user purchase/pa
 
 ### Files
 
-| File                     | Action |
-| ------------------------ | ------ |
-| `code/plan_evaluator.py` | NEW    |
-| `code/plan_ranker.py`    | NEW    |
+| File                     | Action                                               |
+| ------------------------ | ---------------------------------------------------- |
+| `code/plan_evaluator.py` | NEW (Complete)                                       |
+| `code/plan_ranker.py`    | NEW (Complete)                                       |
+| `code/test_phase5.py`    | NEW (Complete, 5/5 passed, 100% sample method match) |
 
 ---
 
